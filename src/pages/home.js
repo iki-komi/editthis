@@ -6,7 +6,7 @@ class Home extends React.Component {
     return (
       <div>
         Welcome!
-        <Link to='/upload'>Upload</Link>
+        This is our home page.
       </div>
     );
   }

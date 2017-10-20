@@ -6,7 +6,6 @@ import ReactRouter from 'react-router';
 import fs from 'fs';
 import Stores from './stores/index';
 
-// fix double renders, fix rendering into root
 // get autobind ;)
 
 const app = express();
@@ -17,7 +16,11 @@ app.engine('jsx', require('express-react-views').createEngine());
 const bundle = fs.readFileSync('build/bundle.js', 'utf8');
 
 const render = (req, res) => {
-  console.log("rendering", bundle.length);
+  if (res.url === '/favicon.ico') {
+    res.send('');
+    return;
+  }
+  console.log("rendering", req.url);
   res.set('Content-Type', 'text/html');
   res.send(`
 <!DOCTYPE html>
@@ -35,5 +38,5 @@ const render = (req, res) => {
 };
 //Stores.counter.subscribe(render);
 
-app.use('/', render);
+app.get('/', render);
 app.listen(3000);
