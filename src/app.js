@@ -1,17 +1,26 @@
 import React from 'react';
-import {Switch, Route, Link} from 'react-router-dom';
+import {Switch, Route} from 'react-router-dom';
 import Header from './components/header';
-import Upload from './pages/upload';
-import Home from './pages/home';
+import Routes from './routes';
 
+// Route definition component, define new pages here
 class App extends React.Component {
   render() {
     return (
       <div>
         <Header/>
         <Switch>
-          <Route exact={true} path='/' component={Home}/>
-          <Route path='/upload' component={Upload}/>
+          {Object.keys(Routes).map((name, i) => {
+            const route = Routes[name];
+            return (
+              <Route
+                exact={route.exact}
+                path={route.path}
+                component={route.component}
+                key={`route-${i}`}
+              />
+            );
+          })}
         </Switch>
       </div>
     );
