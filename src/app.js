@@ -3,6 +3,10 @@ import {Switch, Route} from 'react-router-dom';
 import Header from './components/header';
 import Routes from './routes';
 
+const UsableRoutes = Routes.filter(route => {
+  return !route.isApi;
+});
+
 // Route definition component, define new pages here
 class App extends React.Component {
   render() {
@@ -10,8 +14,7 @@ class App extends React.Component {
       <div>
         <Header/>
         <Switch>
-          {Object.keys(Routes).map((name, i) => {
-            const route = Routes[name];
+          {UsableRoutes.map((route, i) => {
             return (
               <Route
                 exact={route.exact}

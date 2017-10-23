@@ -11,7 +11,8 @@ class App extends React.Component {
         width: '100%',
         height: '5%',
         background: Styles.grey,
-        display: 'flex'
+        display: 'flex',
+        justifyContent: 'space-around',
       }}>
         <Link
           to='/upload'
@@ -20,6 +21,12 @@ class App extends React.Component {
           Upload
         </Link>
         <Link to='/users' style={{}}>Users</Link>
+        <Link
+          to='/storeupload'
+          style={{}}
+        >
+          StoreUpload
+        </Link>
       </div>
     );
   }
